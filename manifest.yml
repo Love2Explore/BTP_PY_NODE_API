@@ -1,0 +1,38 @@
+applications:
+- name: myapp
+  random-route: true
+  path: 
+  memory: 128M
+  buildpack: python_buildpack
+  command: python server.py
+  services:
+  - pyhana
+  - pyuaa
+- name: myappnode
+  random-route: true
+  path: api
+  memory: 128M
+  buildpack: https://github.com/cloudfoundry/nodejs-buildpack
+  services:
+  - pyhana
+  - pyuaa
+- name: web
+  random-route: true
+  path: web
+  memory: 128M
+  env:
+    destinations: >
+      [
+        {
+          "name":"myapp",
+          "url":"https://myapp-fantastic-eland-jk.cfapps.eu10.hana.ondemand.com/",
+          "forwardAuthToken": true
+        },
+        {
+          "name":"myappnode",
+          "url":"https://myappnode-quiet-raven-wj.cfapps.eu10.hana.ondemand.com/",
+          "forwardAuthToken": true
+        }
+      ]
+  services:
+  - pyuaa

@@ -1,0 +1,24 @@
+{
+    "routes": [
+      {
+        "source": "^/myapp/(.*)$",
+        "target": "$1",
+        "destination": "myapp"
+      },
+      {
+        "source": "^/myapp/post(.*)$",
+        "target": "$1",
+        "destination": "myapp"
+      },
+      {
+        "source": "^/myappnode/(.*)$",
+        "target": "$1",
+        "destination": "myappnode"
+      },
+      {
+        "source": "^/myappnode/node(.*)$",
+        "target": "$1",
+        "destination": "myappnode"
+      }
+    ]
+  }
